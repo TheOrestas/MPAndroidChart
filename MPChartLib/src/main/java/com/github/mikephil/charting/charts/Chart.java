@@ -827,7 +827,9 @@ public abstract class Chart<T extends ChartData<? extends IDataSet<? extends Ent
     /**
      * Animates the drawing / rendering of the chart on both x- and y-axis with
      * the specified animation time. If animate(...) is called, no further
-     * calling of invalidate() is necessary to refresh the chart. ANIMATIONS
+     * calling of invalidate() is necessary to refresh the chart.
+     * If an animation is already running the chart will be redraw from the point it stopped
+     * you can also force the restart by canceling the animation manually. ANIMATIONS
      * ONLY WORK FOR API LEVEL 11 (Android 3.0.x) AND HIGHER.
      *
      * @param durationMillisX
@@ -841,9 +843,28 @@ public abstract class Chart<T extends ChartData<? extends IDataSet<? extends Ent
     }
 
     /**
+     * Animates the drawing / rendering of the chart on both x- and y-axis with
+     * the specified animation time. If animate(...) is called, no further
+     * calling of invalidate() is necessary to refresh the chart. ANIMATIONS
+     * ONLY WORK FOR API LEVEL 11 (Android 3.0.x) AND HIGHER.
+     *
+     * @param durationMillisX
+     * @param durationMillisY
+     * @param easingX         a custom easing function to be used on the animation phase
+     * @param easingY         a custom easing function to be used on the animation phase
+     * @param forceRestart    force the restart from the beginning of the animations if the a previous one is still running
+     */
+    public void animateXY(int durationMillisX, int durationMillisY, EasingFunction easingX,
+                          EasingFunction easingY, boolean forceRestart) {
+        mAnimator.animateXY(durationMillisX, durationMillisY, easingX, easingY, forceRestart);
+    }
+
+    /**
      * Animates the rendering of the chart on the x-axis with the specified
      * animation time. If animate(...) is called, no further calling of
-     * invalidate() is necessary to refresh the chart. ANIMATIONS ONLY WORK FOR
+     * invalidate() is necessary to refresh the chart.
+     * If an animation is already running the chart will be redraw from the point it stopped
+     * you can also force the restart by canceling the animation manually. ANIMATIONS ONLY WORK FOR
      * API LEVEL 11 (Android 3.0.x) AND HIGHER.
      *
      * @param durationMillis
@@ -854,9 +875,25 @@ public abstract class Chart<T extends ChartData<? extends IDataSet<? extends Ent
     }
 
     /**
-     * Animates the rendering of the chart on the y-axis with the specified
+     * Animates the rendering of the chart on the x-axis with the specified
      * animation time. If animate(...) is called, no further calling of
      * invalidate() is necessary to refresh the chart. ANIMATIONS ONLY WORK FOR
+     * API LEVEL 11 (Android 3.0.x) AND HIGHER.
+     *
+     * @param durationMillis
+     * @param easing         a custom easing function to be used on the animation phase
+     * @param forceRestart    force the restart from the beginning of the animations if the a previous one is still running
+     */
+    public void animateX(int durationMillis, EasingFunction easing, boolean forceRestart) {
+        mAnimator.animateX(durationMillis, easing, forceRestart);
+    }
+
+    /**
+     * Animates the rendering of the chart on the y-axis with the specified
+     * animation time. If animate(...) is called, no further calling of
+     * invalidate() is necessary to refresh the chart.
+     * If an animation is already running the chart will be redraw from the point it stopped
+     * you can also force the restart by canceling the animation manually. ANIMATIONS ONLY WORK FOR
      * API LEVEL 11 (Android 3.0.x) AND HIGHER.
      *
      * @param durationMillis
@@ -864,6 +901,20 @@ public abstract class Chart<T extends ChartData<? extends IDataSet<? extends Ent
      */
     public void animateY(int durationMillis, EasingFunction easing) {
         mAnimator.animateY(durationMillis, easing);
+    }
+
+    /**
+     * Animates the rendering of the chart on the y-axis with the specified
+     * animation time. If animate(...) is called, no further calling of
+     * invalidate() is necessary to refresh the chart. ANIMATIONS ONLY WORK FOR
+     * API LEVEL 11 (Android 3.0.x) AND HIGHER.
+     *
+     * @param durationMillis
+     * @param easing         a custom easing function to be used on the animation phase
+     * @param forceRestart    force the restart from the beginning of the animations if the a previous one is still running
+     */
+    public void animateY(int durationMillis, EasingFunction easing, boolean forceRestart) {
+        mAnimator.animateY(durationMillis, easing, forceRestart);
     }
 
     /**
@@ -875,7 +926,9 @@ public abstract class Chart<T extends ChartData<? extends IDataSet<? extends Ent
     /**
      * Animates the drawing / rendering of the chart on both x- and y-axis with
      * the specified animation time. If animate(...) is called, no further
-     * calling of invalidate() is necessary to refresh the chart. ANIMATIONS
+     * calling of invalidate() is necessary to refresh the chart.
+     * If an animation is already running the chart will be redraw from the point it stopped
+     * you can also force the restart by canceling the animation manually. ANIMATIONS
      * ONLY WORK FOR API LEVEL 11 (Android 3.0.x) AND HIGHER.
      *
      * @param durationMillisX
@@ -889,9 +942,28 @@ public abstract class Chart<T extends ChartData<? extends IDataSet<? extends Ent
     }
 
     /**
+     * Animates the drawing / rendering of the chart on both x- and y-axis with
+     * the specified animation time. If animate(...) is called, no further
+     * calling of invalidate() is necessary to refresh the chart. ANIMATIONS
+     * ONLY WORK FOR API LEVEL 11 (Android 3.0.x) AND HIGHER.
+     *
+     * @param durationMillisX
+     * @param durationMillisY
+     * @param easingX         a predefined easing option
+     * @param easingY         a predefined easing option
+     * @param forceRestart    force the restart from the beginning of the animations if the a previous one is still running
+     */
+    public void animateXY(int durationMillisX, int durationMillisY, Easing.EasingOption easingX,
+                          Easing.EasingOption easingY, boolean forceRestart) {
+        mAnimator.animateXY(durationMillisX, durationMillisY, easingX, easingY, forceRestart);
+    }
+
+    /**
      * Animates the rendering of the chart on the x-axis with the specified
      * animation time. If animate(...) is called, no further calling of
-     * invalidate() is necessary to refresh the chart. ANIMATIONS ONLY WORK FOR
+     * invalidate() is necessary to refresh the chart.
+     * If an animation is already running the chart will be redraw from the point it stopped
+     * you can also force the restart by canceling the animation manually. ANIMATIONS ONLY WORK FOR
      * API LEVEL 11 (Android 3.0.x) AND HIGHER.
      *
      * @param durationMillis
@@ -902,9 +974,25 @@ public abstract class Chart<T extends ChartData<? extends IDataSet<? extends Ent
     }
 
     /**
-     * Animates the rendering of the chart on the y-axis with the specified
+     * Animates the rendering of the chart on the x-axis with the specified
      * animation time. If animate(...) is called, no further calling of
      * invalidate() is necessary to refresh the chart. ANIMATIONS ONLY WORK FOR
+     * API LEVEL 11 (Android 3.0.x) AND HIGHER.
+     *
+     * @param durationMillis
+     * @param easing         a predefined easing option
+     * @param forceRestart    force the restart from the beginning of the animations if the a previous one is still running
+     */
+    public void animateX(int durationMillis, Easing.EasingOption easing, boolean forceRestart) {
+        mAnimator.animateX(durationMillis, easing, forceRestart);
+    }
+
+    /**
+     * Animates the rendering of the chart on the y-axis with the specified
+     * animation time. If animate(...) is called, no further calling of
+     * invalidate() is necessary to refresh the chart.
+     * If an animation is already running the chart will be redraw from the point it stopped
+     * you can also force the restart by canceling the animation manually. ANIMATIONS ONLY WORK FOR
      * API LEVEL 11 (Android 3.0.x) AND HIGHER.
      *
      * @param durationMillis
@@ -912,6 +1000,20 @@ public abstract class Chart<T extends ChartData<? extends IDataSet<? extends Ent
      */
     public void animateY(int durationMillis, Easing.EasingOption easing) {
         mAnimator.animateY(durationMillis, easing);
+    }
+
+    /**
+     * Animates the rendering of the chart on the y-axis with the specified
+     * animation time. If animate(...) is called, no further calling of
+     * invalidate() is necessary to refresh the chart. ANIMATIONS ONLY WORK FOR
+     * API LEVEL 11 (Android 3.0.x) AND HIGHER.
+     *
+     * @param durationMillis
+     * @param easing         a predefined easing option
+     * @param forceRestart    force the restart from the beginning of the animations if the a previous one is still running
+     */
+    public void animateY(int durationMillis, Easing.EasingOption easing, boolean forceRestart) {
+        mAnimator.animateY(durationMillis, easing, forceRestart);
     }
 
     /**
@@ -923,7 +1025,9 @@ public abstract class Chart<T extends ChartData<? extends IDataSet<? extends Ent
     /**
      * Animates the rendering of the chart on the x-axis with the specified
      * animation time. If animate(...) is called, no further calling of
-     * invalidate() is necessary to refresh the chart. ANIMATIONS ONLY WORK FOR
+     * invalidate() is necessary to refresh the chart.
+     * If an animation is already running the chart will be redraw from the point it stopped
+     * you can also force the restart by canceling the animation manually. ANIMATIONS ONLY WORK FOR
      * API LEVEL 11 (Android 3.0.x) AND HIGHER.
      *
      * @param durationMillis
@@ -933,15 +1037,58 @@ public abstract class Chart<T extends ChartData<? extends IDataSet<? extends Ent
     }
 
     /**
-     * Animates the rendering of the chart on the y-axis with the specified
+     * Animates the rendering of the chart on the x-axis with the specified
      * animation time. If animate(...) is called, no further calling of
      * invalidate() is necessary to refresh the chart. ANIMATIONS ONLY WORK FOR
+     * API LEVEL 11 (Android 3.0.x) AND HIGHER.
+     *
+     * @param durationMillis
+     * @param forceRestart    force the restart from the beginning of the animations if the a previous one is still running
+     */
+    public void animateX(int durationMillis, boolean forceRestart) {
+        mAnimator.animateX(durationMillis, forceRestart);
+    }
+
+    /**
+     * Animates the rendering of the chart on the y-axis with the specified
+     * animation time. If animate(...) is called, no further calling of
+     * invalidate() is necessary to refresh the chart.
+     * If an animation is already running the chart will be redraw from the point it stopped
+     * you can also force the restart by canceling the animation manually. ANIMATIONS ONLY WORK FOR
      * API LEVEL 11 (Android 3.0.x) AND HIGHER.
      *
      * @param durationMillis
      */
     public void animateY(int durationMillis) {
         mAnimator.animateY(durationMillis);
+    }
+
+    /**
+     * Animates the rendering of the chart on the y-axis with the specified
+     * animation time. If animate(...) is called, no further calling of
+     * invalidate() is necessary to refresh the chart. ANIMATIONS ONLY WORK FOR
+     * API LEVEL 11 (Android 3.0.x) AND HIGHER.
+     *
+     * @param durationMillis
+     * @param forceRestart    force the restart from the beginning of the animations if the a previous one is still running
+     */
+    public void animateY(int durationMillis, boolean forceRestart) {
+        mAnimator.animateY(durationMillis, forceRestart);
+    }
+
+    /**
+     * Animates the drawing / rendering of the chart on both x- and y-axis with
+     * the specified animation time. If animate(...) is called, no further
+     * calling of invalidate() is necessary to refresh the chart.
+     * If an animation is already running the chart will be redraw from the point it stopped
+     * you can also force the restart by canceling the animation manually. ANIMATIONS
+     * ONLY WORK FOR API LEVEL 11 (Android 3.0.x) AND HIGHER.
+     *
+     * @param durationMillisX
+     * @param durationMillisY
+     */
+    public void animateXY(int durationMillisX, int durationMillisY) {
+        mAnimator.animateXY(durationMillisX, durationMillisY);
     }
 
     /**
@@ -952,9 +1099,46 @@ public abstract class Chart<T extends ChartData<? extends IDataSet<? extends Ent
      *
      * @param durationMillisX
      * @param durationMillisY
+     * @param forceRestart    force the restart from the beginning of the animations if the a previous one is still running
      */
-    public void animateXY(int durationMillisX, int durationMillisY) {
-        mAnimator.animateXY(durationMillisX, durationMillisY);
+    public void animateXY(int durationMillisX, int durationMillisY, boolean forceRestart) {
+        mAnimator.animateXY(durationMillisX, durationMillisY, forceRestart);
+    }
+
+    /**
+     * ################ ################ ################ ################
+     * ANIMATIONS ONLY WORK FOR API LEVEL 11 (Android 3.0.x) AND HIGHER.
+     */
+    /** CODE BELOW FOR PROVIDING cancelable animation */
+
+    /**
+     * Cancel the animation on the x-axis.
+     * No need to check if the animation is still running. ANIMATIONS
+     * ONLY WORK FOR API LEVEL 11 (Android 3.0.x) AND HIGHER.
+     *
+     */
+    public void cancelAnimationX() {
+        mAnimator.cancelAnimationX();
+    }
+
+    /**
+     * Cancel the animation on the y-axis.
+     * No need to check if the animation is still running. ANIMATIONS
+     * ONLY WORK FOR API LEVEL 11 (Android 3.0.x) AND HIGHER.
+     *
+     */
+    public void cancelAnimationY() {
+        mAnimator.cancelAnimationY();
+    }
+
+    /**
+     * Cancel the animation on the x-axis and y-axis.
+     * No need to check if the animation is still running. ANIMATIONS
+     * ONLY WORK FOR API LEVEL 11 (Android 3.0.x) AND HIGHER.
+     *
+     */
+    public void cancelAnimationXY() {
+        mAnimator.cancelAnimationXY();
     }
 
     /**
